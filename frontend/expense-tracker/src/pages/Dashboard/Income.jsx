@@ -138,7 +138,7 @@ const Income = () => {
             <h2 className="text-xl font-semibold">Income Transactions</h2>
             <button
               onClick={handleDownloadIncomeDetails}
-              className="bg-blue-50 text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-blue-100 transition"
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-lg font-medium shadow-md shadow-blue-500/30 hover:shadow-lg hover:shadow-blue-500/50 hover:from-blue-500 hover:to-indigo-500 transform hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
             >
               Download Excel
             </button>

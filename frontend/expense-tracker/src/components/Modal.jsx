@@ -5,15 +5,15 @@ const Modal = ({ children, isOpen, onClose, title }) => {
   if (!isOpen) return null;   // ✅ Prevent render if closed
 
   return (
-    <div className="fixed top-0 right-0 left-0 z-50 flex justify-center w-full h-full overflow-y-auto bg-black/50">
-      
-      <div className="relative p-4 w-full max-w-2xl">
-        
-        <div className="relative bg-white rounded-lg shadow-sm">
-          
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 p-4">
+
+      <div className="relative w-full max-w-2xl w-full">
+
+        <div className="relative bg-white rounded-2xl shadow-2xl animate-scale-in overflow-hidden border border-gray-100">
+
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b rounded-t">
-            
+
             <h3 className="text-lg font-medium text-gray-900">
               {title}
             </h3>

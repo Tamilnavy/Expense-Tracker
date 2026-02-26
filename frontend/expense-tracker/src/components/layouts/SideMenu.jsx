@@ -25,21 +25,21 @@ const SideMenu = ({ activeMenu }) => {
   };
 
   return (
-    <div className="w-64 h-[calc(100vh-61px)] bg-white border-r border-grey-200/50 p-5 sticky top-15.25 z-20">
+    <div className="w-64 h-[calc(100vh-61px)] bg-white/80 backdrop-blur-md border-r border-gray-100 p-5 sticky top-15.25 z-20 transition-all duration-300">
       <div className="flex flex-col items-center justify-center gap-3 mt-3 mb-7">
         {user?.profileImageUrl ? (
           <img
             src={user?.profileImageUrl || ""}
             alt="profile Image"
-            className="w-20 h-20 bg-slate-400 rounded-full"
-          />) :(
-             <CharAvatar
-          fullName={user?.fullName}
-        width="w-20"
-        height ="h-20"
-      style="text-xl"
-    />
-    )}
+            className="w-20 h-20 bg-slate-400 rounded-full shadow-lg border-2 border-white object-cover transition-transform duration-300 hover:scale-105"
+          />) : (
+          <CharAvatar
+            fullName={user?.fullName}
+            width="w-20"
+            height="h-20"
+            style="text-xl"
+          />
+        )}
 
         <h5 className="text-grey-950 font-medium leading-6">
           {user?.fullName || ""}
@@ -49,12 +49,11 @@ const SideMenu = ({ activeMenu }) => {
       {SIDE_MENU_DATA.map((item, index) => (
         <button
           key={`menu_${index}`}
-          className={`w-full flex items-center gap-4 text-[15px] ${
-            activeMenu === item.label ? "text-white bg-purple-600" : ""
-          } py-3 px-6 rounded-lg mb-3`}
+          className={`w-full flex items-center gap-4 text-[15px] ${activeMenu === item.label ? "text-white bg-gradient-to-r from-violet-600 to-indigo-600 shadow-md shadow-indigo-500/30 font-medium" : "text-gray-600 hover:bg-violet-50 hover:text-violet-600"
+            } py-3 px-6 rounded-xl mb-3 transition-all duration-300 transform hover:-translate-y-0.5 group`}
           onClick={() => handleClick(item.path)}
         >
-          <item.icon className="text-xl" />
+          <item.icon className={`text-xl transition-transform duration-300 ${activeMenu === item.label ? "" : "group-hover:scale-110 group-hover:text-violet-600"}`} />
           {item.label}
         </button>
       ))}

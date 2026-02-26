@@ -1,24 +1,24 @@
-import { API_PATHS } from "./apiPaths"; 
+import { API_PATHS } from "./apiPaths";
 import axiosInstance from "./axiosInstance";
 
 
-const uploadImage = async (imageFile)=>{
-    const formData = new FormData();
-    // Append image file to form data
-    formData.append("image",imageFile);
+const uploadImage = async (imageFile) => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
 
-    try {
-        const response = await axiosInstance.post (API_PATHS.IMAGE.UPLOAD_IMAGE, formData,{
+        fileReader.readAsDataURL(imageFile);
 
-        headers: {
-             "content-Type":"multipart/form-data", // set header from file upload
-        },
+        fileReader.onload = () => {
+            // Returns an object matching the expected structure: { imageUrl: base64String }
+            resolve({ imageUrl: fileReader.result });
+        };
+
+        fileReader.onerror = (error) => {
+            console.error('Error converting image to Base64:', error);
+            reject(error);
+        };
     });
-    return response.data; // Return response data
-} catch(error){             
-    console.error('Error uploading the image:', error);
-    throw error; //REthrow error from handling
-    }
 };
 
+36
 export default uploadImage;
